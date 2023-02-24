@@ -24,6 +24,6 @@
 }
 
 body{
-    background: #454545;
+    background: var(--gray-600);
     -webkit-font-smoothing: antialiased; 
 }
