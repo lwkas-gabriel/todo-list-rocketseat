@@ -7,7 +7,7 @@ export function InputList(){
             <input placeholder='Adicione uma nova tarefa' type="text" />
             <button>
                 Enviar
-                <PlusCircle/>
+                <PlusCircle size={16}/>
             </button>
         </form>
     )

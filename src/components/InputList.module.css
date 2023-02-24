@@ -9,7 +9,7 @@ form{
     margin-top: calc(0px - 2.35rem - 6px);
 }
 
-form input{
+form > input{
     background-color: var(--gray-500);
     color: var(--gray-300);
 
@@ -30,7 +30,7 @@ form input:focus{
     color: var(--gray-100);
 }
 
-form button{
+form > button{
     display: flex;
     align-items: center;
     gap: 0.5rem;
