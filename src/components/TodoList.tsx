@@ -1,5 +1,5 @@
+import { ListItem } from './ListItem';
 import styles from './TodoList.module.css';
-import { Trash } from 'phosphor-react'
 
 export function TodoList(){
     return (
@@ -13,11 +13,10 @@ export function TodoList(){
                 </div>
             </header>
             <li className={styles.listContainer}>
-                <ul className={styles.listItem}>
-                    <input type="radio" id="html" name="fav_language" value="HTML" />
-                    <label>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</label>
-                    <button><Trash /></button>
-                </ul>
+                <ListItem />
+                <ListItem />
+                <ListItem />
+                <ListItem />
             </li>
         </div>
     )

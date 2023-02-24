@@ -1,0 +1,40 @@
+.listItem{
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
+    margin-bottom: 0.75rem;
+    gap: 0.75rem;
+    background: var(--gray-500);
+    border: 1px solid var(--gray-400);
+    border-radius: 8px;
+}
+
+.listItem input[type=checkbox]{
+    /* color: var(--purple-dark); */
+}
+
+.listItem label{
+    font-family: 'Inter', sans-serif;
+    max-width: 39.5rem;
+    font-weight: 400;
+    font-size: 14;
+    line-height: 1.9;
+    color: var(--gray-100);
+}
+
+.listItem button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gray-300);
+    background: transparent;
+    border: none;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.listItem button:hover{
+    color: var(--danger);
+    background: var(--gray-400);
+    border-radius: 8px;
+}
