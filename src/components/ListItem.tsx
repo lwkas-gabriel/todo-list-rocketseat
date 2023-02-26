@@ -3,14 +3,19 @@ import { Trash } from 'phosphor-react'
  
 interface ListItemProps{
     todoText: string;
+    onDeleteTask: (text: string) => void;
 }
 
-export function ListItem({todoText}: ListItemProps){
+export function ListItem({todoText, onDeleteTask}: ListItemProps){
+    function handleDeleteTask(){
+        onDeleteTask(todoText);
+    }
+
     return (
         <ul className={styles.listItem}>
             <input type="checkbox"/>
             <label>{todoText}</label>
-            <button><Trash /></button>
+            <button onClick={handleDeleteTask} title='Deletar Tarefa'><Trash /></button>
         </ul>
     )
 }

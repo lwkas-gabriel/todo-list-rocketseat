@@ -1,16 +1,23 @@
+import './global.css'
 import { Header } from './components/Header'
 import styles from './App.module.css'
-import './global.css'
 import { PlusCircle } from 'phosphor-react'
 import { ListItem } from './components/ListItem'
+import { useState } from 'react'
 
 function App() {
 
-  const toDos: string[] = [
-    "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-    "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames intege2.",
-    "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer3.",
-  ]
+  const [toDos, setToDos] = useState([
+    "teste1", "teste2"
+  ]);
+
+  function deleteTask(deleteThis: string){
+    const listWithoutDeletedTask = toDos.filter(tasks =>{
+      return tasks !== deleteThis
+    })
+
+    setToDos(listWithoutDeletedTask);
+  }
 
   return (
     <div>
@@ -35,7 +42,7 @@ function App() {
             {
               toDos.map(todo => {
                 return (
-                  <ListItem todoText={todo}/>
+                  <ListItem todoText={todo} onDeleteTask={deleteTask}/>
                 )
               })
             }
