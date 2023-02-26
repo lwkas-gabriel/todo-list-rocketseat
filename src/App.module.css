@@ -58,6 +58,12 @@
     background: var(--blue);
 }
 
+.formNewTodo > button:disabled{
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+
 
 .todoListHeader{
     display: flex;
