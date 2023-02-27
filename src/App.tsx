@@ -35,6 +35,7 @@ function App() {
   }
 
   const isNewToDoTextEmpty = newToDoText.length==0
+  const isToDoListEmpty = toDos.length==0
 
   return (
     <div>
@@ -42,6 +43,7 @@ function App() {
       <main className={styles.wrapper}>
         <form className={styles.formNewTodo} action="#">
           <input
+            value={newToDoText}
             onInvalid={handleNewTaskInvalid}
             onChange={handleOnChangeText}
             placeholder='Adicione uma nova tarefa'
@@ -49,7 +51,6 @@ function App() {
           />
             <button
               type='submit'
-              value={newToDoText}
               onClick={handleCreateNewTask}
               disabled={isNewToDoTextEmpty}
             >
@@ -58,7 +59,7 @@ function App() {
             </button>
         </form>
         <header className={styles.todoListHeader}>
-            <div>
+            <div className={styles.counterContainer}>
               <p className={styles.todoTasksCreated}>Tarefas criadas</p><span className={styles.counter}>{toDos.length}</span>
             </div>
             <div>
