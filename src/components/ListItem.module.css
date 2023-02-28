@@ -10,18 +10,23 @@
     border-radius: 8px;
 }
 
-.listItem input[type=checkbox]{
-    /* color: var(--purple-dark); */
-}
-
-.listItem label{
-    
+label{
     font-family: 'Inter', sans-serif;
     max-width: 39.5rem;
     font-weight: 400;
     font-size: 14;
     line-height: 1.9;
     color: var(--gray-100);
+}
+
+.taskFisinhed{
+    font-family: 'Inter', sans-serif;
+    max-width: 39.5rem;
+    font-weight: 400;
+    font-size: 14;
+    line-height: 1.9;
+    color: var(--gray-300);
+    text-decoration: line-through;
 }
 
 .listItem button{
