@@ -3,25 +3,31 @@ import { Trash } from 'phosphor-react'
 import { useState } from 'react';
  
 interface ListItemProps{
-    todoText: string;
+    item: ListItemType;
     onDeleteTask: (text: string) => void;
 }
 
-export function ListItem({todoText, onDeleteTask}: ListItemProps){
-    const [isChecked, setIsChecked] = useState(false);
+export interface ListItemType{
+    todoText: string;
+    isCompleted: boolean;
+}
+
+export function ListItem({item, onDeleteTask}: ListItemProps){
+    const [isCompleted, setIsCompleted] = useState(item.isCompleted);
 
     function handleOnChangeCheck(){
-        setIsChecked(state => !state) 
+        setIsCompleted(state => !state);
+        item.isCompleted = isCompleted;
     }
 
     function handleDeleteTask(){
-        onDeleteTask(todoText);
+        onDeleteTask(item.todoText);
     }
 
     return (
         <ul className={styles.listItem}>
-            <input onClick={handleOnChangeCheck} type="checkbox"/>
-            <label className={isChecked ? styles.taskFisinhed : ''}>{todoText}</label>
+            <input checked={item.isCompleted} onChange={handleOnChangeCheck} type="checkbox"/>
+            <label className={item.isCompleted ? styles.taskFisinhed : ''}>{item.todoText}</label>
             <button onClick={handleDeleteTask} title='Deletar Tarefa'><Trash /></button>
         </ul>
     )

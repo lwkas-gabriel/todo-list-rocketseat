@@ -2,18 +2,18 @@ import './global.css'
 import { Header } from './components/Header'
 import styles from './App.module.css'
 import { PlusCircle } from 'phosphor-react'
-import { ListItem } from './components/ListItem'
+import { ListItem, ListItemType } from './components/ListItem'
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 function App() {
 
-  const [toDos, setToDos] = useState<string[]>([]);
+  const [toDos, setToDos] = useState<ListItemType[]>([]);
 
   const [newToDoText, setNewToDoText] = useState('');
 
   function handleCreateNewTask(event: FormEvent){
     event.preventDefault();
-    setToDos([...toDos, newToDoText]);
+    setToDos([...toDos, {todoText: newToDoText, isCompleted: false}]);
     setNewToDoText('');
   }
 
@@ -28,7 +28,7 @@ function App() {
 
   function deleteTask(deleteThis: string){
     const listWithoutDeletedTask = toDos.filter(tasks =>{
-      return tasks !== deleteThis
+      return tasks.todoText !== deleteThis
     })
 
     setToDos(listWithoutDeletedTask);
@@ -63,14 +63,17 @@ function App() {
               <p className={styles.todoTasksCreated}>Tarefas criadas</p><span className={styles.counter}>{toDos.length}</span>
             </div>
             <div>
-              <p className={styles.todoFinishedTasks}>Concluídas</p><span className={styles.counter}>0</span>
+              <p className={styles.todoFinishedTasks}>Concluídas</p>
+              <span className={styles.counter}>
+                0
+              </span>
             </div>
         </header>
           <li className={styles.listContainer}>
             {
               toDos.map(todo => {
                 return (
-                  <ListItem todoText={todo} onDeleteTask={deleteTask}/>
+                  <ListItem item={todo} onDeleteTask={deleteTask}/>
                 )
               })
             }
