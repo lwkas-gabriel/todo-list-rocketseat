@@ -5,6 +5,7 @@ import { useState } from 'react';
 interface ListItemProps{
     item: ListItemType;
     onDeleteTask: (text: string) => void;
+    onChangeState: (text:string, state:boolean) => void
 }
 
 export interface ListItemType{
@@ -12,12 +13,16 @@ export interface ListItemType{
     isCompleted: boolean;
 }
 
-export function ListItem({item, onDeleteTask}: ListItemProps){
+export function ListItem({item, onDeleteTask, onChangeState}: ListItemProps){
     const [isCompleted, setIsCompleted] = useState(item.isCompleted);
 
-    function handleOnChangeCheck(){
+    function handleOnClickCheck(){
         setIsCompleted(state => !state);
         item.isCompleted = isCompleted;
+    }
+
+    function handleOnChangeCheck(){
+        onChangeState(item.todoText, item.isCompleted);
     }
 
     function handleDeleteTask(){
@@ -26,7 +31,7 @@ export function ListItem({item, onDeleteTask}: ListItemProps){
 
     return (
         <ul className={styles.listItem}>
-            <input checked={item.isCompleted} onChange={handleOnChangeCheck} type="checkbox"/>
+            <input checked={item.isCompleted} onChange={handleOnChangeCheck} onClick={handleOnClickCheck} type="checkbox"/>
             <label className={item.isCompleted ? styles.taskFisinhed : ''}>{item.todoText}</label>
             <button onClick={handleDeleteTask} title='Deletar Tarefa'><Trash /></button>
         </ul>

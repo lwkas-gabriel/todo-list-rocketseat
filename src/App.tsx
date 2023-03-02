@@ -11,6 +11,22 @@ function App() {
 
   const [newToDoText, setNewToDoText] = useState('');
 
+  function headerSelector(){
+    let countCompleted = 0
+
+    if(toDos.length == 0){
+      return '0'
+    }else{
+      toDos.map(todo => {
+        if(todo.isCompleted){
+          countCompleted++;
+        }
+        return countCompleted;
+      })
+      return `${countCompleted} de ${toDos.length}`
+    }
+  }
+
   function handleCreateNewTask(event: FormEvent){
     event.preventDefault();
     setToDos([...toDos, {todoText: newToDoText, isCompleted: false}]);
@@ -26,6 +42,16 @@ function App() {
     event.target.setCustomValidity("Esse campo é obrigatório!");
   }
 
+  function changeStateTask(text:string, state:boolean){
+    const completedTasksList = toDos.map(todo =>{
+      if(todo.todoText === text){
+        todo.isCompleted == state;
+      }
+      return todo;
+    })
+    setToDos(completedTasksList);
+  }
+
   function deleteTask(deleteThis: string){
     const listWithoutDeletedTask = toDos.filter(tasks =>{
       return tasks.todoText !== deleteThis
@@ -35,7 +61,7 @@ function App() {
   }
 
   const isNewToDoTextEmpty = newToDoText.length==0
-  const isToDoListEmpty = toDos.length==0
+  //const isToDoListEmpty = toDos.length==0
 
   return (
     <div>
@@ -65,7 +91,9 @@ function App() {
             <div>
               <p className={styles.todoFinishedTasks}>Concluídas</p>
               <span className={styles.counter}>
-                0
+                {
+                  headerSelector()
+                }
               </span>
             </div>
         </header>
@@ -73,7 +101,7 @@ function App() {
             {
               toDos.map(todo => {
                 return (
-                  <ListItem item={todo} onDeleteTask={deleteTask}/>
+                  <ListItem item={todo} onChangeState={changeStateTask} onDeleteTask={deleteTask}/>
                 )
               })
             }
