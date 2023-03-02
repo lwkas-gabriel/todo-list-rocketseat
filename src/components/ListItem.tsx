@@ -17,8 +17,9 @@ export function ListItem({item, onDeleteTask, onChangeState}: ListItemProps){
     const [isCompleted, setIsCompleted] = useState(item.isCompleted);
 
     function handleOnClickCheck(){
-        setIsCompleted(state => !state);
-        item.isCompleted = isCompleted;
+        //setIsCompleted(state => !state);
+        setIsCompleted(!item.isCompleted);
+        item.isCompleted = !isCompleted;
     }
 
     function handleOnChangeCheck(){
