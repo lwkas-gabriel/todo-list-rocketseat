@@ -29,7 +29,7 @@ function App() {
 
   function handleCreateNewTask(event: FormEvent){
     event.preventDefault();
-    setToDos([...toDos, {todoText: newToDoText, isCompleted: false}]);
+    setToDos([...toDos, {id: new Date(), todoText: newToDoText, isCompleted: false}]);
     setNewToDoText('');
   }
 
@@ -52,9 +52,9 @@ function App() {
     setToDos(completedTasksList);
   }
 
-  function deleteTask(deleteThis: string){
+  function deleteTask(deleteThis: Date){
     const listWithoutDeletedTask = toDos.filter(tasks =>{
-      return tasks.todoText !== deleteThis
+      return tasks.id !== deleteThis
     })
 
     setToDos(listWithoutDeletedTask);
@@ -97,7 +97,7 @@ function App() {
               </span>
             </div>
         </header>
-          <li className={styles.listContainer}>
+          <ul className={styles.listContainer}>
             {
               toDos.map(todo => {
                 return (
@@ -105,7 +105,7 @@ function App() {
                 )
               })
             }
-          </li>
+          </ul>
       </main>
     </div>
   )
